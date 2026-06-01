@@ -1,0 +1,12 @@
+{
+    "amqp": {
+        "host": "10.20.5.1",
+        "port": 30000,
+        "user": "guest",
+        "password": "guest"
+    },
+    "topic": "Gesture.0.Detection",
+    "gesture_rpc_mapping": {
+        "Ask For Help": "Agent.Environment.Labvisio.Activate"
+    }
+}

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gesture-listener
+  labels:
+    app: gesture-listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gesture-listener
+  template:
+    metadata:
+      labels:
+        app: gesture-listener
+    spec:
+      containers:
+        - name: gesture-listener
+          image: 10.20.5.15:5000/wagnercotta/gesture-listener:latest
+          imagePullPolicy: Always
+          command: [ "python" ]
+          args: [ "src/service.py", "/etc/gesture-listener/config/config.json" ]
+          ports:
+            - containerPort: 8080
+              name: http
+          volumeMounts:
+            - name: config
+              mountPath: /etc/gesture-listener/config
+              readOnly: true
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+      volumes:
+        - name: config
+          configMap:
+            name: gesture-listener-config

@@ -1,0 +1,3 @@
+is-wire @ git+https://github.com/wagnercotta/is-wire-py@is-wire-enhanced
+is-msgs @ git+https://github.com/wagnercotta/is-msgs.git@release-candidate#subdirectory=python
+
